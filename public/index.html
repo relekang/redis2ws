@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ws-subscriber</title>
+    <style>
+      body {
+        font-family: Georgia;
+        font-size: 16px;
+        line-height: 1.6em;
+        text-align: center;
+        margin-top: 40px;
+        background: #fafafa;
+
+      }
+      .log li { list-style-type: none }
+      .log li:first-child { font-size: 30px; line-height: 40px;}
+    </style>
+  </head>
+  <body>
+    <ul class="log"></ul>
+
+    <script type="text/javascript" src="lib/reconnecting-websocket/reconnecting-websocket.js"></script>
+    <script type="text/javascript" src="lib/jquery/dist/jquery.js"></script>
+    <script type="text/javascript">
+      var ws = new ReconnectingWebSocket('ws://' + window.location.host + ':1337');
+      var logEl = $('.log');
+      ws.onmessage = function(event) {
+        logEl.prepend('<li>' + event.data + '</li>');
+        if (logEl.children().length > 20) {
+          logEl.children(':last-child').remove();
+        }
+      };
+      ws.onopen = function(event) {
+        console.log('open..' + JSON.stringify(event));
+      };
+
+    </script>
+  </body>
+</html>

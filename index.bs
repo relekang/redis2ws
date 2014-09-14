@@ -1,0 +1,16 @@
+import redis
+import ws
+
+server = new ws.Server({port: 1337})
+
+server.on('connection', (websocket) ->
+    subscriber = redis.createClient()
+    subscriber.subscribe(process.env.REDIS_CHANNEL)
+
+    subscriber.on("message", (channel, message) ->
+        try
+            websocket.send(message)
+        catch e
+            subscriber.unsubscribe(process.env.REDIS_CHANNEL)
+    )
+)
