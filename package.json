@@ -1,0 +1,18 @@
+{
+  "name": "redis2ws",
+  "version": "1.0.0",
+  "description": "A simple node websocket server that publishes messages from a redis pub/sub queue",
+  "main": "index.js",
+  "dependencies": {
+    "bailey": "0.0.13",
+    "forever": "^0.11.1",
+    "redis": "^0.12.1",
+    "ws": "^0.4.32"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rolf Erik Lekang <me@rolflekang.com>",
+  "license": "MIT"
+}
