@@ -1,7 +1,7 @@
 parse: node_modules
 	node_modules/.bin/bailey ./ ./build --node
 
-start: parse
+start: public/lib parse
 	forever start build/index.js
 
 restart: parse
@@ -13,4 +13,7 @@ stop:
 node_modules:
 	npm install
 
-.PHONY: parse start stop
+public/lib:
+	bower install
+
+.PHONY: parse start restart stop
