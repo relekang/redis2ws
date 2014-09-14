@@ -22,7 +22,7 @@
     <script type="text/javascript" src="lib/reconnecting-websocket/reconnecting-websocket.js"></script>
     <script type="text/javascript" src="lib/jquery/dist/jquery.js"></script>
     <script type="text/javascript">
-      var ws = new ReconnectingWebSocket('ws://' + window.location.host + ':1337');
+      var ws = new ReconnectingWebSocket('ws://' + window.location.host.split(':')[0] + ':1337');
       var logEl = $('.log');
       ws.onmessage = function(event) {
         logEl.prepend('<li>' + event.data + '</li>');

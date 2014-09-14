@@ -1,4 +1,6 @@
+import node-static as static
 import redis
+import http
 import ws
 
 server = new ws.Server({port: 1337})
@@ -14,3 +16,12 @@ server.on('connection', (websocket) ->
             subscriber.unsubscribe(process.env.REDIS_CHANNEL)
     )
 )
+
+
+# Serve static files under ./public
+fileServer = new static.Server('./public')
+http.createServer((request, response) ->
+    request.addListener('end', () ->
+        fileServer.serve(request, response)
+    ).resume()
+).listen(process.env.PORT or 3000)
