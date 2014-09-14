@@ -4,6 +4,9 @@ parse: node_modules
 start: parse
 	forever start build/index.js
 
+restart: parse
+	forever restart build/index.js
+
 stop:
 	forever stop build/index.js
 

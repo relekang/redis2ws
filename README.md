@@ -11,6 +11,6 @@ make
 export REDIS_CHANNEL=42
 
 make start
-
+make restart
 make stop
 ```
